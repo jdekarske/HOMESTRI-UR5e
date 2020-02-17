@@ -14,11 +14,16 @@ RUN source /opt/ros/$ROS_DISTRO/setup.bash \
 # Get moveit stuff
 RUN apt-get install -y ros-$ROS_DISTRO-moveit
 
+# Get ROSPlan stuff
+RUN apt-get update -qq \
+ && apt-get -y install flex bison freeglut3-dev libbdd-dev python-catkin-tools ros-$ROS_DISTRO-tf2-bullet \
+ && git clone https://github.com/KCL-Planning/rosplan ./src/rosplan
+
 # Get UR5 stuff
 RUN git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git ./src/Universal_Robots_ROS_Driver \
 # I think this one is outdated, but idk how calibration works && git clone -b calibration_devel https://github.com/fmauch/universal_robot.git ./src/fmauch_universal_robot \
  && git clone -b $ROS_DISTRO-devel https://github.com/ros-industrial/universal_robot.git ./src/universal_robot \
- && apt update -qq \
+ && apt-get update -qq \
  && rosdep update \
  && rosdep install --from-path src --ignore-src -y
 
@@ -43,4 +48,4 @@ RUN \
 COPY docker-entrypoint.sh .
 
 ENTRYPOINT ["/bin/bash", "-c", "source /catkin_ws/docker-entrypoint.sh && roslaunch ur5_e_moveit_config demo.launch"]
-# run this: $ ./gui-docker --rm -it rosdocker:latest
+# run this: $ ./gui-docker --rm -it homestri-ur5e:latest
