@@ -4,7 +4,9 @@ SHELL ["/bin/bash", "-c"]
 
 RUN apt-get update \
  && apt-get install -y \
- && apt-get clean
+ && apt-get clean \
+ && apt-get install -y python3 python3-dev python3-pip build-essential \
+ && pip3 install rosdep rospkg rosinstall_generator rosinstall wstool vcstools catkin_tools catkin_pkg
 
 # Setup environment
 WORKDIR /catkin_ws
@@ -18,6 +20,20 @@ RUN apt-get install -y ros-$ROS_DISTRO-moveit
 RUN apt-get update -qq \
  && apt-get -y install flex bison freeglut3-dev libbdd-dev python-catkin-tools ros-$ROS_DISTRO-tf2-bullet \
  && git clone https://github.com/KCL-Planning/rosplan ./src/rosplan
+
+# Mongodb (ROSPlan dep) stuff
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 68818C72E52529D4 \
+ && echo "deb http://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list \
+ && apt-get update -qq \
+ && apt-get install -y mongodb-org \
+ && git clone -b melodic-devel https://github.com/strands-project/mongodb_store.git
+
+#rosplan tutorials
+RUN apt-get update -qq \
+ && apt-get -y install ros-${ROS_DISTRO}-turtlebot3-navigation ros-${ROS_DISTRO}-move-base-msgs ros-${ROS_DISTRO}-dwa-local-planner \
+ && cd /catkin_ws/src/ \
+ && git clone https://github.com/clearpathrobotics/occupancy_grid_utils \
+ && git clone https://github.com/KCL-Planning/rosplan_demos.git
 
 # Get UR5 stuff
 RUN git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git ./src/Universal_Robots_ROS_Driver \
@@ -48,4 +64,4 @@ RUN \
 COPY docker-entrypoint.sh .
 
 ENTRYPOINT ["/bin/bash", "-c", "source /catkin_ws/docker-entrypoint.sh && roslaunch ur5_e_moveit_config demo.launch"]
-# run this: $ ./gui-docker --rm -it homestri-ur5e:latest
+# run this: $ ./gui-docker --rm -it -v /home/jason/Documents/homestri-ur5e/experimentdevel:/catkin_ws/src/experimentdevel homestri-ur5e:latest
