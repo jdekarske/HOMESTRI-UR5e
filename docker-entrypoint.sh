@@ -1,9 +1,6 @@
  
 #!/bin/bash
 
-# exit immediately if a command exits with a non-zero status (see `$ help set`)
-set -e
-
 ECHO_PREFIX="[docker-entrypoint.sh]"
 
 # location of master
