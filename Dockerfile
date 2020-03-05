@@ -62,6 +62,8 @@ RUN \
   rm -rf /var/lib/apt/lists/*
 
 COPY docker-entrypoint.sh .
+RUN echo "source /catkin_ws/docker-entrypoint.sh" >> /root/.bashrc
 
+# CMD ["/bin/bash"]
 ENTRYPOINT ["/bin/bash", "-c", "source /catkin_ws/docker-entrypoint.sh && roslaunch ur5_e_moveit_config demo.launch"]
-# run this from the git repo: $ ./gui-docker --rm -it -v $PWD/experimentdevel:/catkin_ws/src/experimentdevel homestri-ur5e:rosplan
+# run this from the git repo: $ ./gui-docker --rm -it -v $PWD/experimentdevel:/catkin_ws/src/experimentdevel jdekarske/homestri-ur5e:rosplan

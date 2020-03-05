@@ -13,8 +13,8 @@ source "$ROS"
 echo "$ECHO_PREFIX" "sourced ROS installation:" "$ROS"
 
 # workspace holding custom ROS packages
-# workspace=/catkin_ws
-workspace=.
+workspace=/catkin_ws
+
 source "$workspace"/devel/setup.bash
 echo "$ECHO_PREFIX" "sourced workspace:" "$workspace"
 
