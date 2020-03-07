@@ -63,6 +63,7 @@ RUN \
 
 COPY docker-entrypoint.sh .
 RUN echo "source /catkin_ws/docker-entrypoint.sh" >> /root/.bashrc
+#  && update-rc.d -f mongodb remove #prevent MongoDB from starting by default
 
 # CMD ["/bin/bash"]
 ENTRYPOINT ["/bin/bash", "-c", "source /catkin_ws/docker-entrypoint.sh && roslaunch ur5_e_moveit_config demo.launch"]
