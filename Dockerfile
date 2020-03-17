@@ -37,6 +37,9 @@ RUN git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git
 # Get robotiq stuff
 RUN git clone -b kinetic-devel https://github.com/ros-industrial/robotiq.git --single-branch ./src/robotiq
 
+# Get our own robot config
+COPY homestri_robot ./src/
+
 # Get everything going
 RUN source /opt/ros/$ROS_DISTRO/setup.bash \
  && apt-get update -qq \
@@ -53,5 +56,5 @@ COPY docker-entrypoint.sh .
 RUN echo "source /catkin_ws/docker-entrypoint.sh" >> /root/.bashrc
 
 # CMD ["/bin/bash"]
-ENTRYPOINT ["/bin/bash", "-c", "source /catkin_ws/docker-entrypoint.sh && roslaunch ur5_e_moveit_config demo.launch"]
+# ENTRYPOINT ["/bin/bash", "-c", "source /catkin_ws/docker-entrypoint.sh && roslaunch moveit_config demo.launch"]
 # run this from the git repo: $ ./gui-docker --rm -it -v $PWD/experimentdevel:/catkin_ws/src/experimentdevel jdekarske/homestri-ur5e:rosplan

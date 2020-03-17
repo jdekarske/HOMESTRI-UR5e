@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: homestri_robot_description
+    relative_path: urdf/ur5_e_robotiq_2f_85.urdf.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/robot_arm.srdf
+  CONFIG:
+    author_name: Jason Dekarske
+    author_email: jdekarske@ucdavis.edu
+    generated_timestamp: 1584405943
