@@ -115,7 +115,7 @@ if [ -n "${CONTAINER_NAME:-}" ] ; then
       NAME_OPTION="--name=$CONTAINER_NAME"
       if [ "$(count_positional_args $@)" == "0" ] ; then
          # If no further (positional) arguments were provided, start a bash in the default image (for dummy users)
-         DUMMY_DEFAULTS="-it moveit/moveit:master-source bash"
+         DUMMY_DEFAULTS="-it --rm -v $PWD/experimentdevel:/catkin_ws/src/experimentdevel jdekarske/homestri-ur5e"
       fi
    else
       if [ -z "$($DOCKER_EXECUTABLE ps -q --filter name=^$CONTAINER_NAME\$)" ] ; then
@@ -132,6 +132,12 @@ if [ -n "${CONTAINER_NAME:-}" ] ; then
       exit 0
    fi
 fi
+echo "name"
+echo ${NAME_OPTION:-}
+echo "docker"
+echo ${DOCKER_PARAMS:-}
+echo "summy"
+echo ${DUMMY_DEFAULTS:-}
 
 ${DOCKER_EXECUTABLE:-docker} run \
     --env="DISPLAY=$DISPLAY" \
