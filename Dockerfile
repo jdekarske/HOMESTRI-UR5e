@@ -12,6 +12,9 @@ WORKDIR /catkin_ws
 RUN source /opt/ros/$ROS_DISTRO/setup.bash \
  && mkdir src
 
+## Get Packages that everyone will need ##
+##########################################
+
 # Get moveit stuff
 RUN apt-get update -qq && apt-get install -y \
  ros-$ROS_DISTRO-moveit
@@ -40,6 +43,8 @@ RUN git clone -b kinetic-devel https://github.com/ros-industrial/robotiq.git --s
 # Get our own robot config
 COPY homestri_robot ./src/
 
+##########################################
+
 # Get everything going
 RUN source /opt/ros/$ROS_DISTRO/setup.bash \
  && apt-get update -qq \
@@ -55,6 +60,6 @@ RUN \
 COPY docker-entrypoint.sh .
 RUN echo "source /catkin_ws/docker-entrypoint.sh" >> /root/.bashrc
 
-# CMD ["/bin/bash"]
+CMD ["/bin/bash"]
 # ENTRYPOINT ["/bin/bash", "-c", "source /catkin_ws/docker-entrypoint.sh && roslaunch moveit_config demo.launch"]
 # run this from the git repo: $ ./gui-docker --rm -it -v $PWD/experimentdevel:/catkin_ws/src/experimentdevel jdekarske/homestri-ur5e:rosplan
