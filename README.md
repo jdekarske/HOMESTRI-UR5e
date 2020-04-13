@@ -15,3 +15,12 @@ Run this script from the cloned the repository (ex. /home/jason/Documents/homest
 ```
 ./gui-docker --rm -it -v $PWD/experimentdevel:/catkin_ws/src/experimentdevel jdekarske/homestri-ur5e:rosplan
 ```
+# still testing:
+Alternatively, to access the container via browser, use docker-compose with an additional novnc image:
+```
+docker-compose up -d
+```
+and access via http://localhost:8080/vnc_auto.html in a web browser.
+
+* works with server on my ubuntu machine, client on windows over LAN (plz test windows<>windows)
+* the vnc is debian, not sure if that matters
