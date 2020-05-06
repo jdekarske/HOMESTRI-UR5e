@@ -1,4 +1,4 @@
-> If you were directed here simply to play with robots, skip to the [installation]() section, then move on to [quickstart]() to skip the technical stuff. It'll take 15 minutes, we promise.
+> If you were directed here simply to play with robots, skip to the [installation](#installing-docker) section, then move on to [quickstart](#quickstart) to skip the technical stuff. It'll take 15 minutes, we promise.
 
 > This document is in construction while we are learning as well; these are the current strategies. Please contribute or contact us for help!
 
@@ -32,18 +32,18 @@ Later, we will see that certain projects were developed and are stable in a give
 
 Wayyy later (TODO) we will see that different ROS containers can work together and communicate through standard networks over web. These containers are suitable for swarm or multi-agent robot configurations.
 
-# Installing Docker and Quickstart
+# Installing Docker
 *The direct downloads are linked here for convenience. By default, don't trust files from internet strangers.*
 ## Windows 10 (Pro, Enterprise, or Education)
 1. Install [Docker Desktop](https://download.docker.com/win/stable/Docker%20Desktop%20Installer.exe) for Windows. (Use default installation)
 2. Start Docker Desktop.
 3. Open a terminal by pressing the windows key and typing "cmd" followed by enter.
-4. Proceed to [quickstart]().
+4. Proceed to [quickstart](#quickstart).
 ## (untested) MacOS (10.13+)
 1. Install [Docker Desktop](https://download.docker.com/mac/stable/Docker.dmg) for Mac
 2. Start Docker Desktop.
 3. Open a terminal by pressing Cmd-Space to open spotlight search, and type "terminal" and hit return.
-4. Proceed to [quickstart]().
+4. Proceed to [quickstart](#quickstart).
 ## Linux
 If you are using apt for package management, enter the following in your terminal to update your list of available packages. Then the second line to install Docker engine and Containerd for container logistics:
 ```
