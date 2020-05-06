@@ -15,7 +15,7 @@ This tutorial will **not** go over ROS itself. Please see the wiki or other tuto
 
 ---
 
-## What's a robot?kage management, enter thekage management, enter the following in your terminal to update your liskage management, enter the following in your terminal to update your lis following in your terminal to update your lis
+## What's a robot?
 The Robot Operating System (ROS) is an open source ecosystem of robot models, algorithms, environments, tools, and ideas. The modularity of ROS allows your projects to use packages that others have developed and maintain so that you can improve your robot by standing on the shoulders of giants. Did you buy a robot from companyx? Chances are, companyx has developed a ROS package that contains the robot configuration, controls, 3D models, and demos. Why reinvent their wheel? If you are worried about the accuracy if their models, there's a good chance they're a part of an industry [consortium](https://rosindustrial.org/) (if you find an error, please support open source development and submit an issue on github!).
 
 If you've been introduced to ROS previously you are intimately aware of the particularities in installing linux (which distro? beaver...what?). Then, you must find the right version of ROS (what? the package you need isn't supported?!? start over!). Since ROS is composed of so many pieces, keeping track of what goes where can be a huge challenge!
