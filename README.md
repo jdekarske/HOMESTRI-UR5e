@@ -1,12 +1,9 @@
-# homestri-ur5e
+# HOMESTRI-ur5e
 My progress developing an experiment using a UR5-e robot arm for the HOME STRI.
 
-Install docker
-```
-sudo apt-get install curl
-curl -sSL https://get.docker.com/ | sh
-sudo usermod -aG docker $(whoami)
-```
+[Check out the tutorial!](https://github.com/jdekarske/homestri-ur5e/blob/master/ROSinDocker.md)
+
+## General instructions
 Clone the repo for the gui helper script `gui-docker` (and the linked volumes if you are using them)
 ```
 git clone https://github.com/jdekarske/homestri-ur5e
@@ -15,12 +12,11 @@ Run this script from the cloned the repository (ex. /home/jason/Documents/homest
 ```
 ./gui-docker --rm -it -v $PWD/experimentdevel:/catkin_ws/src/experimentdevel jdekarske/homestri-ur5e:rosplan
 ```
-# still testing:
-Alternatively, to access the container via browser, use docker-compose with an additional novnc image:
-```
-docker-compose up -d
-```
-and access via http://localhost:8080/vnc_auto.html in a web browser.
-
-* works with server on my ubuntu machine, client on windows over LAN (plz test windows<>windows)
-* the vnc is debian, not sure if that matters
+# Roadmap
+- ~~Establish UCD hardware based container
+- ~~Write tutorial
+- Separate ROSPlan to higher-level container
+- Build experiment environment
+- Write correct PDDLs
+- Incorporate human inputs
+- Connect actual hardware
