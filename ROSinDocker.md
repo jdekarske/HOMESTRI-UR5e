@@ -1,4 +1,4 @@
-> If you were directed here simply to play with robots, skip to the [quickstart]() section to skip the technical stuff. It'll take 5 minutes, we promise.
+> If you were directed here simply to play with robots, skip to the [installation]() section, then move on to [quickstart]() to skip the technical stuff. It'll take 15 minutes, we promise.
 
 > This document is in construction while we are learning as well; these are the current strategies. Please contribute or contact us for help!
 
@@ -33,30 +33,37 @@ Later, we will see that certain projects were developed and are stable in a give
 Wayyy later (TODO) we will see that different ROS containers can work together and communicate through standard networks over web. These containers are suitable for swarm or multi-agent robot configurations.
 
 # Installing Docker and Quickstart
-Just follow the instructions on the website? input here @TB @SO?
-## Windows
-1. Please install your OS, then come back here.
-2. Download this [file](docker-compose.yml) somewhere you know
-3. docker desktop gui to start the docker compose?
-4. 
-docker desktop install
-virtualization
-## MacOS
+*The direct downloads are linked here for convenience. By default, don't trust files from internet strangers.*
+## Windows 10 (Pro, Enterprise, or Education)
+1. Install [Docker Desktop](https://download.docker.com/win/stable/Docker%20Desktop%20Installer.exe) for Windows. (Use default installation)
+2. Start Docker Desktop.
+3. Open a terminal by pressing the windows key and typing "cmd" followed by enter.
+4. Proceed to [quickstart]().
+## (untested) MacOS (10.13+)
+1. Install [Docker Desktop](https://download.docker.com/mac/stable/Docker.dmg) for Mac
+2. Start Docker Desktop.
+3. Open a terminal by pressing Cmd-Space to open spotlight search, and type "terminal" and hit return.
+4. Proceed to [quickstart]().
 ## Linux
 If you are using apt for package management, enter the following in your terminal to update your list of available packages. Then the second line to install Docker engine and Containerd for container logistics:
 ```
-sudo apt update
-sudo apt install docker-ce docker-ce-cli containerd.io
-```
-Assuming everything went well, download the following `docker-compose.yml` script for the HOME-STRI robot project and run it.
-```
-curl https://raw.githubusercontent.com/jdekarske/homestri-ur5e/master/docker-compose.yml > docker-compose.yml && docker-compose up
+$ sudo apt update
+$ sudo apt install docker-ce docker-ce-cli containerd.io
 ```
 
-Then open a browser to see inside the container:
+## Other Windows and MacOS versions
+docker toolbox... windows edge...should I cover this?
+
+# Quickstart
+Assuming installation went well, download the following `docker-compose.yml` script for the HOME-STRI robot project and run it by copy-pasting the following lines into your terminal. These will run the container that holds the UR5e arm and a VNC viewer so you can see inside the container. The first time you run this it may take some time due to the large download, but subsequent runs will execute immediately.
 ```
-xdg-open http://localhost:8080/vnc_auto.html
+$ curl https://raw.githubusercontent.com/jdekarske/homestri-ur5e/master/docker-compose.yml -o docker-compose.yml
+$ docker-compose up -d
 ```
+
+Then navigate to this url to see inside the container: http://localhost:8080/vnc_auto.html
+
+When finished, use `$ docker-compose down` to safely shutdown.
 
 # Developing
 Now to the fun part, let's play with robots.
@@ -114,3 +121,5 @@ Another window will open where you will be able to work as if you are in the con
 
 # Distribution
 
+# Troubleshooting
+- If you receive this error, "virtualization" is likely disabled. Follow [this](https://bce.berkeley.edu/enabling-virtualization-in-your-pc-bios.html) guide to remedy the issue.
