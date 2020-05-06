@@ -1,4 +1,4 @@
-# HOMESTRI-ur5e
+# HOMESTRI-UR5e
 My progress developing an experiment using a UR5-e robot arm for the HOME STRI.
 
 [Check out the tutorial!](https://github.com/jdekarske/homestri-ur5e/blob/master/ROSinDocker.md)
@@ -13,8 +13,8 @@ Run this script from the cloned the repository (ex. /home/jason/Documents/homest
 ./gui-docker --rm -it -v $PWD/experimentdevel:/catkin_ws/src/experimentdevel jdekarske/homestri-ur5e:rosplan
 ```
 # Roadmap
-- ~~Establish UCD hardware based container
-- ~~Write tutorial
+- ~~Establish UCD hardware based container~~
+- ~~Write tutorial~~
 - Separate ROSPlan to higher-level container
 - Build experiment environment
 - Write correct PDDLs
