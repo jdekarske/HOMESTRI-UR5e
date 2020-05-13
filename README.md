@@ -1,5 +1,5 @@
 # HOMESTRI-UR5e
-![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/jdekarske/HOMESTRI-UR5e) ![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/jdekarske/HOMESTRI-UR5e)
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/jdekarske/homestri-ur5e) ![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/jdekarske/homestri-ur5e)
 
 My progress developing an experiment using a UR5-e robot arm for the HOME STRI.
 
