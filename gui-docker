@@ -132,12 +132,6 @@ if [ -n "${CONTAINER_NAME:-}" ] ; then
       exit 0
    fi
 fi
-echo "name"
-echo ${NAME_OPTION:-}
-echo "docker"
-echo ${DOCKER_PARAMS:-}
-echo "summy"
-echo ${DUMMY_DEFAULTS:-}
 
 ${DOCKER_EXECUTABLE:-docker} run \
     --env="DISPLAY=$DISPLAY" \
