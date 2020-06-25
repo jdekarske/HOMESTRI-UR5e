@@ -4,7 +4,7 @@ services:
     image: jdekarske/homestri-ur5e:rosplan
     command: /bin/bash -c "source /catkin_ws/docker-entrypoint.sh && roslaunch moveit_config demo.launch"
     volumes:
-      - $PWD/experiment_ws:/experiment_ws
+      - $PWD/experimentdevel:/catkin_ws/src/experimentdevel
     environment:
       - DISPLAY=novnc:0.0
     depends_on:
