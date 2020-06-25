@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="beer">
+    <link name="link">
+      <pose>0 0 0.115 0 0 0</pose>
+      <inertial>
+        <mass>0.50</mass>
+        <inertia>
+          <ixx>0.00050</ixx>
+          <iyy>0.00050</iyy>
+          <izz>0.00050</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.055000</radius>
+            <length>0.230000</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <cylinder>
+            <radius>0.055000</radius>
+            <length>0.230000</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://beer/materials/scripts</uri>
+            <uri>model://beer/materials/textures</uri>
+            <name>Beer/Diffuse</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>
