@@ -1,39 +1,25 @@
-<?xml version="1.0" ?>
-<sdf version="1.5">
-  <model name="beer">
-    <link name="link">
-      <pose>0 0 0.115 0 0 0</pose>
-      <inertial>
-        <mass>0.50</mass>
-        <inertia>
-          <ixx>0.00050</ixx>
-          <iyy>0.00050</iyy>
-          <izz>0.00050</izz>
-        </inertia>
-      </inertial>
-      <collision name="collision">
-        <geometry>
-          <cylinder>
-            <radius>0.055000</radius>
-            <length>0.230000</length>
-          </cylinder>
-        </geometry>
-      </collision>
-      <visual name="visual">
-        <geometry>
-          <cylinder>
-            <radius>0.055000</radius>
-            <length>0.230000</length>
-          </cylinder>
-        </geometry>
-        <material>
-          <script>
-            <uri>model://beer/materials/scripts</uri>
-            <uri>model://beer/materials/textures</uri>
-            <name>Beer/Diffuse</name>
-          </script>
-        </material>
-      </visual>
-    </link>
+<?xml version='1.0'?>
+<sdf version='1.4'>
+  <model name="interface">
+    <static>false</static>
+      <link name='chassis'>
+        <pose>0 0 0 0 0 0</pose>
+
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>.5 .5 2</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>/catkin_ws/src/experimentdevel/world/module/meshes/module_dec.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
   </model>
 </sdf>
