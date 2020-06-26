@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <sdf version='1.4'>
-  <model name="module">
+  <model name="interface">
     <static>true</static>
       <link name='chassis'>
         <pose>0 0 0 0 0 0</pose>
@@ -16,7 +16,7 @@
         <visual name='visual'>
           <geometry>
             <mesh>
-              <uri>/catkin_ws/src/experimentdevel/world/module/meshes/interface_dec.dae</uri>
+              <uri>/catkin_ws/src/experimentdevel/world/interface/meshes/interface_dec.dae</uri>
             </mesh>
           </geometry>
         </visual>

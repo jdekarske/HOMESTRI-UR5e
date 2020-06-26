@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <sdf version='1.4'>
-  <model name="interface">
+  <model name="module">
     <static>false</static>
       <link name='chassis'>
         <pose>0 0 0 0 0 0</pose>
@@ -8,7 +8,7 @@
         <collision name='collision'>
           <geometry>
             <box>
-              <size>.5 .5 2</size>
+              <size>.16 .12 .08</size>
             </box>
           </geometry>
         </collision>
