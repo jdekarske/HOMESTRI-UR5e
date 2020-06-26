@@ -1,0 +1,25 @@
+<?xml version='1.0'?>
+<sdf version='1.4'>
+  <model name="module">
+    <static>true</static>
+      <link name='chassis'>
+        <pose>0 0 0 0 0 0</pose>
+
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>.5 .5 2</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>/catkin_ws/src/experimentdevel/world/module/meshes/interface_dec.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+  </model>
+</sdf>
