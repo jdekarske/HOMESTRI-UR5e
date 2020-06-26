@@ -1,8 +1,8 @@
 version: '2'
 services:
   ide:
-    image: jdekarske/homestri-ur5e:rosplan
-    command: /bin/bash -c "source /catkin_ws/docker-entrypoint.sh && roslaunch moveit_config demo.launch"
+    image: jdekarske/homestri-ur5e:latest
+    command: /bin/bash -c "source /catkin_ws/docker-entrypoint.sh && gazebo"
     volumes:
       - $PWD/experimentdevel:/catkin_ws/src/experimentdevel
     environment:
@@ -15,8 +15,8 @@ services:
     image: theasp/novnc:latest
     environment:
       # Adjust to your screen size
-      - DISPLAY_WIDTH=1920
-      - DISPLAY_HEIGHT=1080
+      - DISPLAY_WIDTH=1910
+      - DISPLAY_HEIGHT=980
       - RUN_XTERM=no
     ports:
       - "8080:8080"
