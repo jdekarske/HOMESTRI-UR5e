@@ -732,9 +732,9 @@
       <pose frame=''>-1.44526 -0.387385 0 0 -0 0</pose>
     </model>
     <state world_name='default'>
-      <sim_time>1293 756000000</sim_time>
-      <real_time>1340 293578272</real_time>
-      <wall_time>1593141674 44777701</wall_time>
+      <sim_time>0</sim_time>
+      <real_time>0</real_time>
+      <wall_time>0</wall_time>
       <iterations>1293756</iterations>
       <model name='gasket_part'>
         <pose frame=''>0.991702 -0.846305 1.01499 -0.000117 -0 -2e-06</pose>
