@@ -1,0 +1,35 @@
+<launch>
+    <arg name="robot_name"/>
+    <arg name="init_pose"/>
+    <arg name="limited" default="true"/>
+    <arg name="world_path" default="/catkin_ws/src/experimentdevel/world/demo_world.world"/>
+
+    <!-- Gazebo specific options -->
+    <param name="/use_sim_time" value="true" />
+    <arg name="gui" default="true"/>
+    <arg name="paused" default="false"/>
+
+    <!-- startup simulated world -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" default="$(arg world_path)"/>
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="gui" value="$(arg gui)"/>
+    </include>
+
+    <!-- Spawn robots -->
+    <group ns="robot1">
+        <param name="tf_prefix" value="robot1_tf"/>
+        <include file="/catkin_ws/src/experimentdevel/launch/spawn_robot.launch">
+            <arg name="init_pose" value="-x 1.0 -y -0.5 -z 1.1 -R 0 -P 0 -Y 2.0"/>
+            <arg name="robot_name" value="robot1"/>
+        </include>
+    </group>
+
+    <group ns="robot2">
+        <param name="tf_prefix" value="robot2_tf"/>
+        <include file="/catkin_ws/src/experimentdevel/launch/spawn_robot.launch">
+            <arg name="init_pose" value="-x 1.0 -y -2.4 -z 1.1 -R 0 -P 0 -Y 2.0"/>
+            <arg name="robot_name" value="robot2"/>
+        </include>
+    </group>
+</launch>
