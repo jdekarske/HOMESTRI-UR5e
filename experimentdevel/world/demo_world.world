@@ -317,61 +317,6 @@
       </link>
       <pose frame=''>1.70362 -0.44072 0 0 -0 0</pose>
     </model>
-    <model name='gasket_part'>
-      <link name='link'>
-        <inertial>
-          <pose frame=''>0 0 0.016955 0 -0 0</pose>
-          <mass>0.5</mass>
-          <inertia>
-            <ixx>0.00107286</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>0.00416708</iyy>
-            <iyz>0</iyz>
-            <izz>0.00514411</izz>
-          </inertia>
-        </inertial>
-        <collision name='collision'>
-          <pose frame=''>0 0 0.016955 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>0.31442 0.15684 0.03391</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://gasket_part/meshes/gasket.dae</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <script>
-              <uri>model://arm_part/materials/scripts</uri>
-              <uri>model://arm_part/materials/textures</uri>
-              <name>ArmPart/Diffuse</name>
-            </script>
-          </material>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <pose frame=''>0.991702 -0.846383 0 0 -0 0</pose>
-    </model>
     <model name='monkey wrench'>
       <static>0</static>
       <link name='link'>
@@ -736,16 +681,6 @@
       <real_time>0</real_time>
       <wall_time>0</wall_time>
       <iterations>1293756</iterations>
-      <model name='gasket_part'>
-        <pose frame=''>0.991702 -0.846305 1.01499 -0.000117 -0 -2e-06</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose frame=''>0.991702 -0.846305 1.01499 -0.000117 -0 -2e-06</pose>
-          <velocity>-0 1e-06 -0.002382 -0.157899 0 0</velocity>
-          <acceleration>1e-05 5.35726 0 -1.63912 0.001002 -5e-06</acceleration>
-          <wrench>5e-06 2.67863 0 0 -0 0</wrench>
-        </link>
-      </model>
       <model name='ground_plane'>
         <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
