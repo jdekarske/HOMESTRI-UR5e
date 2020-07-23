@@ -2,7 +2,9 @@ version: '2'
 services:
   ide:
     image: jdekarske/homestri-ur5e:latest
-    command: /bin/bash -c "source /catkin_ws/docker-entrypoint.sh && gazebo"
+    command: /bin/bash #-c "source /catkin_ws/docker-entrypoint.sh && roslaunch /catkin_ws/src/experimentdevel/launch/gazebo_world.launch"
+    stdin_open: true
+    tty: true  
     volumes:
       - $PWD/experimentdevel:/catkin_ws/src/experimentdevel
     environment:
