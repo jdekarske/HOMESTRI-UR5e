@@ -48,6 +48,9 @@
   <!-- Given the published joint states, publish tf for the robot links -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
 
+  <!-- Remap follow_joint_trajectory -->
+  <remap from="/follow_joint_trajectory" to="/arm_controller/follow_joint_trajectory"/>
+
   <!-- Run the main MoveIt! executable without trajectory execution (we do not have controllers configured by default) -->
   <include file="$(find moveit_config)/launch/move_group.launch">
     <arg name="allow_trajectory_execution" value="true"/>
@@ -58,7 +61,7 @@
 
   <!-- Run Rviz and load the default config to see the state of the move_group node -->
   <include file="$(find moveit_config)/launch/moveit_rviz.launch">
-    <arg name="config" value="true"/>
+    <arg name="rviz_config" value="$(find moveit_config)/launch/moveit.rviz"/>
     <arg name="debug" value="$(arg debug)"/>
   </include>
 
