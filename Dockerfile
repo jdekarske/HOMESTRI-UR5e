@@ -37,8 +37,8 @@ RUN git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git
 # I think this one is outdated, but idk how calibration works && git clone -b calibration_devel https://github.com/fmauch/universal_robot.git ./src/fmauch_universal_robot \
  && git clone -b $ROS_DISTRO-devel https://github.com/ros-industrial/universal_robot.git --single-branch ./src/universal_robot
 
-# Get robotiq stuff
-RUN git clone -b kinetic-devel https://github.com/ros-industrial/robotiq.git --single-branch ./src/robotiq
+# Get robotiq stuff. Unfortunately, the official one is broken :(
+RUN git clone https://github.com/StanleyInnovation/robotiq_85_gripper.git --single-branch ./src/robotiq
 
 # Get our own robot config
 COPY homestri_robot ./src/
