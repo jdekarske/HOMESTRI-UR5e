@@ -32,10 +32,13 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 68818C72E52529D
  && git clone -b melodic-devel https://github.com/strands-project/mongodb_store.git --single-branch ./src/mongodb_store
 
 # Get UR5 stuff
-RUN git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git --single-branch ./src/Universal_Robots_ROS_Driver \
-# For using the ur_robot_driver with a real robot you need to install the externalcontrol-1.0.urcap which can be found inside the resources folder of this driver. \
-# I think this one is outdated, but idk how calibration works && git clone -b calibration_devel https://github.com/fmauch/universal_robot.git ./src/fmauch_universal_robot \
- && git clone -b $ROS_DISTRO-devel https://github.com/ros-industrial/universal_robot.git --single-branch ./src/universal_robot
+RUN git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git ./src/Universal_Robots_ROS_Driver \
+ && mv src/Universal_Robots_ROS_Driver/ur_controllers src/ur_controllers \
+ && rm -rf src/Universal_Robots_ROS_Driver
+# clone fork of the description. This is currently necessary, until the changes are merged upstream. (allegedly required? we're at bleeding edge so this doesn't work)
+# RUN git clone -b calibration_devel https://github.com/fmauch/universal_robot.git ./src/fmauch_universal_robot
+# UR5e is wayyy behind on melodic integration, so I'll build from source via https://github.com/ros-industrial/universal_robot/tree/melodic-devel TODO: change this to apt when released!
+RUN git clone -b melodic-devel-staging https://github.com/ros-industrial/universal_robot.git --single-branch ./src/universal_robot
 
 # Get robotiq stuff. Unfortunately, the official one is broken :(
 RUN git clone https://github.com/StanleyInnovation/robotiq_85_gripper.git --single-branch ./src/robotiq
