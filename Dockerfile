@@ -3,7 +3,7 @@ FROM osrf/ros:melodic-desktop-full
 SHELL ["/bin/bash", "-c"]
 
 RUN apt-get update -qq && apt-get install -y \
- python3 python3-dev python3-pip build-essential ros-melodic-ros-control ros-melodic-ros-controllers \
+ python3 python3-dev python3-pip build-essential ros-melodic-ros-control ros-melodic-ros-controllers ros-melodic-moveit-visual-tools \
  && pip3 install \
  rosdep rospkg rosinstall_generator rosinstall wstool vcstools catkin_tools catkin_pkg
 
