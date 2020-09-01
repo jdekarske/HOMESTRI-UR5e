@@ -86,7 +86,14 @@ gripper_pos:
     - gripper_finger1_joint
   gains:
     gripper_finger1_joint:
-      p: 100
-      d: 1
-      i: 1
-      i_clamp: 1
+      p: 1
+      d: 0
+      i: 0
+      i_clamp: 0
+
+gazebo_ros_control/pid_gains:
+  gripper_finger1_joint:
+    p: 10
+    d: 0
+    i: 0
+    i_clamp: 0
