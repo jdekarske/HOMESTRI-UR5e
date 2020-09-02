@@ -3,7 +3,9 @@ FROM osrf/ros:melodic-desktop-full
 SHELL ["/bin/bash", "-c"]
 
 RUN apt-get update -qq && apt-get install -y \
- python3 python3-dev python3-pip build-essential ros-melodic-ros-control ros-melodic-ros-controllers ros-melodic-moveit-visual-tools \
+ python3 python3-dev python3-pip build-essential \
+ ros-melodic-ros-control ros-melodic-ros-controllers ros-melodic-moveit-visual-tools \
+ ros-melodic-gazebo-ros ros-melodic-eigen-conversions ros-melodic-object-recognition-msgs ros-melodic-roslint \
  && pip3 install \
  rosdep rospkg rosinstall_generator rosinstall wstool vcstools catkin_tools catkin_pkg
 
@@ -43,7 +45,11 @@ RUN git clone -b melodic-devel-staging https://github.com/ros-industrial/univers
 # Get robotiq stuff. Unfortunately, the official one is broken :(
 RUN git clone https://github.com/StanleyInnovation/robotiq_85_gripper.git --single-branch ./src/robotiq
 
-# Get our own robot config
+# A package that helps the gripper cheat
+RUN git clone https://github.com/JenniferBuehler/gazebo-pkgs.git ./src/gazebo-pkg \
+ && git clone https://github.com/JenniferBuehler/general-message-pkgs.git ./src/general-message-pkgs
+
+# Get our own robot config TODO: change this to a git clone for the same package? makes development easier
 COPY homestri_robot ./src/
 
 ##########################################
@@ -62,7 +68,9 @@ RUN \
 
 COPY docker-entrypoint.sh .
 RUN echo "source /catkin_ws/docker-entrypoint.sh" >> /root/.bashrc
+ #fixes gazebo REST issue(gazebo needs to run one time before this is applied)
+ #&& echo "sed -i 's/fuel/robotics/g' ~/.ignition/fuel/config.yaml" >> /root/.bashrc
 
 CMD ["/bin/bash"]
 # ENTRYPOINT ["/bin/bash", "-c", "source /catkin_ws/docker-entrypoint.sh && roslaunch moveit_config demo.launch"]
-# run this from the git repo: $ ./gui-docker --rm -it -v $PWD/experimentdevel:/catkin_ws/src/experimentdevel jdekarske/homestri-ur5e:rosplan
+# run this from the git repo: $ ./gui-docker -it -v $PWD/experimentdevel:/catkin_ws/src/experimentdevel jdekarske/homestri-ur5e:latest
