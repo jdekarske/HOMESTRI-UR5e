@@ -1,7 +1,7 @@
 version: '2'
 services:
   ide:
-    image: jdekarske/homestri-ur5e:rosplan
+    image: jdekarske/homestri-ur5e:release/gazebo
     command: /bin/bash -c "source /catkin_ws/docker-entrypoint.sh && roslaunch moveit_config demo.launch"
     environment:
       - DISPLAY=novnc:0.0
@@ -14,7 +14,7 @@ services:
     environment:
       # Adjust to your screen size
       - DISPLAY_WIDTH=1920
-      - DISPLAY_HEIGHT=1080
+      - DISPLAY_HEIGHT=958
       - RUN_XTERM=no
     ports:
       - "8080:8080"

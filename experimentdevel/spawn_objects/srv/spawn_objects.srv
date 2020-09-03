@@ -1,9 +1,0 @@
-# the object id in gazebo for which to spawn above
-# the number of objects along the length (long side of the table)
-# the number of objects along the width (short side of the table)
-
-string surface_name
-uint8 length
-uint8 width
----
-bool status
