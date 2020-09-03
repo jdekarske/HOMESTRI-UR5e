@@ -9,6 +9,9 @@ services:
       - novnc
     networks:
       - x11
+    logging:
+      driver: none 
+
   novnc:
     image: theasp/novnc:latest
     environment:
