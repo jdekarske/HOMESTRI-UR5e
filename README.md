@@ -11,11 +11,7 @@ The UR5-e robot arm configuration for the [HOME STRI](https://homestri.ucdavis.e
 Run `docker-compose up -d` and navigate to [https://localhost:8080/vnc.html](https://localhost:8080/vnc.html) to see the robot in rviz and move it around.
 
 ### A tad more complicated
-Use the `gui-docker` script in place of `docker run` like so: 
-```
-git clone https://github.com/jdekarske/homestri-ur5e
-```
-Run run gui-docker as you would for any ordinary `docker run` command. If this is your first time running this, it may take a few minutes to download the current image. This will open gui instances from the container on your host. Sometimes the windows render weird, simply resize the window and it will recover.
+Run gui-docker as you would for any ordinary `docker run` command. If this is your first time running this, it may take a few minutes to download the current image. This will open gui instances from the container on your host. Sometimes the windows render weird, simply resize the window and it will recover.
 ```
 ./gui-docker --rm -it -v $PWD/experimentdevel:/catkin_ws/src/experimentdevel jdekarske/homestri-ur5e:latest
 ```
