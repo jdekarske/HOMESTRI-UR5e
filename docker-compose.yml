@@ -1,7 +1,7 @@
 version: '2'
 services:
   ide:
-    image: jdekarske/homestri-ur5e:release/gazebo
+    image: jdekarske/homestri-ur5e:release-gazebo
     command: /bin/bash -c "source /catkin_ws/docker-entrypoint.sh && roslaunch moveit_config demo.launch"
     environment:
       - DISPLAY=novnc:0.0
