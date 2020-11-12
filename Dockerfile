@@ -39,6 +39,7 @@ RUN git clone https://github.com/JenniferBuehler/gazebo-pkgs.git ./src/gazebo-pk
 
 # Get our own robot config TODO: change this to a git clone for the same package? makes development easier
 COPY homestri_robot ./src/
+COPY gazebo_fix/config.yaml /root/.ignition/fuel
 
 ##########################################
 
