@@ -39,13 +39,15 @@ RUN git clone https://github.com/JenniferBuehler/gazebo-pkgs.git ./src/gazebo-pk
 
 # Get our own robot config TODO: change this to a git clone for the same package? makes development easier
 COPY homestri_robot ./src/
-COPY gazebo_fix/config.yaml /root/.ignition/fuel
+# COPY gazebo_fix/config.yaml /root/.ignition/fuel #this doesn't work
 
 ##########################################
 
 # Get everything going
 RUN source /opt/ros/$ROS_DISTRO/setup.bash \
  && apt-get update -qq \
+# TODO This isn't necessarily good practice, but we can fix later 
+ && apt-get upgrade -y \
  && rosdep update \
  && rosdep install --from-path src --ignore-src -y \
  && catkin_make
