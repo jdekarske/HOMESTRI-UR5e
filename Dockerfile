@@ -3,7 +3,7 @@ FROM osrf/ros:melodic-desktop-full
 SHELL ["/bin/bash", "-c"]
 
 RUN apt-get update -qq && apt-get install -y \
- python3 python3-dev python3-pip build-essential \
+ python3 python3-dev python3-pip build-essential wget\
  ros-melodic-ros-control ros-melodic-ros-controllers ros-melodic-moveit-visual-tools \
  ros-melodic-gazebo-ros ros-melodic-eigen-conversions ros-melodic-object-recognition-msgs ros-melodic-roslint \
  && pip3 install \
@@ -16,6 +16,12 @@ RUN source /opt/ros/$ROS_DISTRO/setup.bash \
 
 ## Get Packages that everyone will need ##
 ##########################################
+
+# Use a newer Gazebo, because 9.0 is buggy
+RUN sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list' \
+ && wget https://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add - \
+ && sudo apt-get update -qq \
+ && sudo apt-get install gazebo9 libgazebo9-dev -y
 
 # Get moveit stuff
 RUN apt-get update -qq && apt-get install -y \
