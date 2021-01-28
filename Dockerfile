@@ -43,9 +43,15 @@ RUN git clone https://github.com/StanleyInnovation/robotiq_85_gripper.git --sing
 RUN git clone https://github.com/JenniferBuehler/gazebo-pkgs.git ./src/gazebo-pkg \
  && git clone https://github.com/JenniferBuehler/general-message-pkgs.git ./src/general-message-pkgs
 
+# Shows the gazebo environment in rviz
+RUN git clone https://github.com/andreasBihlmaier/gazebo2rviz.git ./src/gazebo2rviz\
+ && git clone https://github.com/andreasBihlmaier/pysdf.git ./src/pysdf
+ENV MESH_WORKSPACE_PATH='/catkin_ws/src'
+ENV GAZEBO_MODEL_PATH='/catkin_ws/src'
+
+
 # Get our own robot config TODO: change this to a git clone for the same package? makes development easier
 COPY homestri_robot ./src/
-# COPY gazebo_fix/config.yaml /root/.ignition/fuel #this doesn't work
 
 ##########################################
 
