@@ -29,7 +29,7 @@
   <xacro:include filename="$(find robotiq_85_description)/urdf/robotiq_85_gripper.urdf.xacro" />
 
   <!-- instantiate everything -->
-  <xacro:macro name="ur5_e_robotiq_2f_85" params="prefix">
+  <xacro:macro name="ur5_e_robotiq_2f_85" params="prefix origin_xyz origin_rpy">
    
    <!-- arm -->
    <xacro:ur_robot
@@ -50,7 +50,7 @@
     <link name="world"/>
 
     <joint name="world-base" type="fixed">
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="${origin_xyz}" rpy="${origin_rpy}" />
       <parent link="world" />
       <child link="${prefix}base_link" />
     </joint>
