@@ -1,7 +1,7 @@
 version: '2'
 services:
-  ide:
-    image: jdekarske/homestri-ur5e:release-gazebo
+  ros:
+    image: jdekarske/homestri-ur5e:rosindocker
     command: /bin/bash -c "source /catkin_ws/docker-entrypoint.sh && roslaunch moveit_config demo.launch"
     environment:
       - DISPLAY=novnc:0.0
@@ -9,8 +9,8 @@ services:
       - novnc
     networks:
       - x11
-    logging:
-      driver: none 
+    # logging: # uncomment to hide the logs
+    #   driver: none 
 
   novnc:
     image: theasp/novnc:latest
