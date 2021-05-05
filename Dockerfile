@@ -40,8 +40,7 @@ RUN git clone -b melodic-devel-staging https://github.com/ros-industrial/univers
 RUN git clone https://github.com/StanleyInnovation/robotiq_85_gripper.git --single-branch ./src/robotiq
 
 # A package that helps the gripper cheat
-RUN git clone https://github.com/JenniferBuehler/gazebo-pkgs.git ./src/gazebo-pkg \
- && git clone https://github.com/JenniferBuehler/general-message-pkgs.git ./src/general-message-pkgs
+RUN git clone https://github.com/Pitrified/gazebo_ros_link_attacher.git ./src/gazebo_ros_link_attacher
 
 # Shows the gazebo environment in rviz
 RUN git clone https://github.com/andreasBihlmaier/gazebo2rviz.git ./src/gazebo2rviz\
