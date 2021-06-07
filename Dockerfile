@@ -37,7 +37,7 @@ RUN git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git
 RUN git clone -b melodic-devel-staging https://github.com/ros-industrial/universal_robot.git --single-branch ./src/universal_robot
 
 # Get robotiq stuff. Unfortunately, the official one is broken :(
-RUN git clone https://github.com/StanleyInnovation/robotiq_85_gripper.git --single-branch ./src/robotiq
+RUN git clone https://github.com/Polarworks/robotiq_85_gripper.git --single-branch ./src/robotiq
 
 # A package that helps the gripper cheat
 RUN git clone https://github.com/Pitrified/gazebo_ros_link_attacher.git ./src/gazebo_ros_link_attacher
