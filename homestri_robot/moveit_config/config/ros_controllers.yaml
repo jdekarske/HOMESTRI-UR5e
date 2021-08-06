@@ -51,7 +51,7 @@ manipulator_pos:
     - wrist_3_joint
   constraints:
       goal_time: 0.6
-      stopped_velocity_tolerance: 0.05
+      stopped_velocity_tolerance: 0
       shoulder_pan_joint: {trajectory: 0.2, goal: 0.1}
       shoulder_lift_joint: {trajectory: 0.2, goal: 0.1}
       elbow_joint: {trajectory: 0.2, goal: 0.1}
