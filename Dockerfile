@@ -9,10 +9,9 @@ RUN apt-get update -qq && apt-get install -y \
  && pip3 install \
  rosdep rospkg rosinstall_generator rosinstall wstool vcstools catkin_tools catkin_pkg
 
-# Setup environment
+# Setup environment, all installed things go here
 WORKDIR /catkin_ws
-RUN source /opt/ros/$ROS_DISTRO/setup.bash \
- && mkdir src
+RUN  mkdir src
 
 ## Get Packages that everyone will need ##
 ##########################################
@@ -46,12 +45,6 @@ RUN git clone https://github.com/andreasBihlmaier/gazebo2rviz.git ./src/gazebo2r
 ENV MESH_WORKSPACE_PATH='/catkin_ws/src'
 ENV GAZEBO_MODEL_PATH='/catkin_ws/src'
 
-
-# Get our own robot config
-COPY homestri_robot ./src/
-
-##########################################
-
 # Get everything going
 RUN source /opt/ros/$ROS_DISTRO/setup.bash \
  && apt-get update -qq \
@@ -63,6 +56,28 @@ RUN source /opt/ros/$ROS_DISTRO/setup.bash \
 
 COPY docker-entrypoint.sh .
 RUN echo "source /catkin_ws/docker-entrypoint.sh" >> /root/.bashrc
+
+#########################################
+# Now let's add some development stuff
+
+# need to add a non-root user so bind mount permissions work correctly
+ENV USERNAME ros
+RUN useradd -m $USERNAME && \
+  echo "$USERNAME:$USERNAME" | chpasswd && \
+  usermod --shell /bin/bash $USERNAME && \
+  usermod -aG sudo $USERNAME && \
+  echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$USERNAME && \
+  chmod 0440 /etc/sudoers.d/$USERNAME && \
+  # Replace 1000 with your user/group id
+  usermod  --uid 1000 $USERNAME && \
+  groupmod --gid 1000 $USERNAME
+
+USER $USERNAME
+RUN mkdir -p /home/$USERNAME/catkin_ws/src
+WORKDIR /home/$USERNAME/catkin_ws/src
+
+# Get our own robot config
+COPY homestri_robot .
 
 CMD ["/bin/bash"]
 # ENTRYPOINT ["/bin/bash", "-c", "source /catkin_ws/docker-entrypoint.sh && roslaunch moveit_config demo.launch"]

@@ -17,7 +17,8 @@
 	// "image": "osrf/ros:melodic-desktop-full"
 	//---------
 	// Use the user so no permissions issues https://aka.ms/vscode-remote/containers/non-root.
-	// "remoteUser": "ros",
+	"remoteUser": "ros",
+	"workspaceFolder": "/home/ros/catkin_ws/src",
 	//---------
 	// Nvidia via nvidia-docker2
 	"runArgs": [
