@@ -1,0 +1,197 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        // Build tasks
+        {
+            "label": "catkin_make",
+            "type": "shell",
+            "command": "source /catkin_ws/devel/setup.bash && cd ~/catkin_ws && catkin_make -j8 -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_CXX_STANDARD=14",
+            "problemMatcher": "$gcc",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        // Linting and static code analysis tasks
+        {
+            "label": "cpplint",
+            "detail": "Lint files with cpplint.",
+            "type": "shell",
+            "command": "ament_cpplint src/",
+            "presentation": {
+                "panel": "dedicated",
+                "reveal": "silent",
+                "clear": true
+            },
+            "problemMatcher": [
+                {
+                    "owner": "cpplint",
+                    "source": " cpplint",
+                    "fileLocation": "absolute",
+                    "pattern": [
+                        {
+                            "regexp": "^(.+):(\\d+):\\s+(.+)\\[(.+)\\]$",
+                            "file": 1,
+                            "line": 2,
+                            "message": 3,
+                            "code": 4
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "label": "cppcheck",
+            "detail": "Run static code checker cppcheck.",
+            "type": "shell",
+            "command": "ament_cppcheck src/",
+            "presentation": {
+                "panel": "dedicated",
+                "reveal": "silent",
+                "clear": true
+            },
+            "problemMatcher": [
+                {
+                    "owner": "cppcheck",
+                    "source": "cppcheck",
+                    "pattern": [
+                        {
+                            "regexp": "^\\[(.+):(\\d+)\\]:\\s+(.+)$",
+                            "file": 1,
+                            "line": 2,
+                            "message": 3
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "label": "lint_cmake",
+            "detail": "Run lint on cmake files.",
+            "type": "shell",
+            "command": "ament_lint_cmake src/",
+            "presentation": {
+                "panel": "dedicated",
+                "reveal": "silent",
+                "clear": true
+            },
+            "problemMatcher": [
+                {
+                    "owner": "lint_cmake",
+                    "source": "lint_cmake",
+                    "pattern": [
+                        {
+                            "regexp": "^(.+):(\\d+):\\s+(.+)$",
+                            "file": 1,
+                            "line": 2,
+                            "message": 3
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "label": "flake8",
+            "detail": "Run flake8 on python files.",
+            "type": "shell",
+            "command": "ament_flake8 src/",
+            "presentation": {
+                "panel": "dedicated",
+                "reveal": "silent",
+                "clear": true
+            },
+            "problemMatcher": [
+                {
+                  "owner": "flake8",
+                  "source": "flake8",
+                  "pattern": [
+                    {
+                      "code": 4,
+                      "column": 3,
+                      "file": 1,
+                      "line": 2,
+                      "message": 5,
+                      "regexp": "^(.+):(\\d+):(\\d+): (\\w\\d+) (.+)$"
+                    }
+                  ]
+                }
+              ]
+        },
+        {
+            "label": "pep257",
+            "detail": "Run pep257 on python files.",
+            "type": "shell",
+            "command": "ament_pep257 src/",
+            "presentation": {
+                "panel": "dedicated",
+                "reveal": "silent",
+                "clear": true
+            },
+            "problemMatcher": [
+                {
+                    "owner": "pep257",
+                    "source": "pep257",
+                    "pattern": [
+                        {
+                            "regexp": "^(.+):(\\d+)\\s+(.+):\\s+(.+):\\s+(.+)$",
+                            "file": 1,
+                            "line": 2,
+                            "code": 4,
+                            "message": 5
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "label": "xmllint",
+            "detail": "Run xmllint on xml files.",
+            "type": "shell",
+            "command": "ament_xmllint src/",
+            "presentation": {
+                "panel": "dedicated",
+                "reveal": "silent",
+                "clear": true
+            },
+            "problemMatcher": [
+                {
+                    "owner": "xmllint",
+                    "source": "xmllint",
+                    "fileLocation": "absolute",
+                    "pattern": [
+                        {
+                            "regexp": "^(.+):(\\d+):\\s+(.+)\\s+:\\s+(.+)$",
+                            "file": 1,
+                            "line": 2,
+                            "code": 3,
+                            "message": 4
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "label": "lint all",
+            "detail": "Run all linters.",
+            "dependsOn":["cppcheck", "cpplint", "flake8", "lint_cmake", "pep257","xmllint", "uncrustify"],
+            "problemMatcher": []
+        },
+        // Workspace editing tasks
+        {
+            "label": "install dependencies",
+            "detail": "Install all dependencies specified in the workspaces package.xml files.",
+            "type": "shell",
+            "command": "sudo apt-get update && rosdep update && rosdep install --from-paths src --ignore-src -y",
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+          "id": "package",
+          "type": "promptString",
+          "description": "Package name"
+        }
+      ]
+}
