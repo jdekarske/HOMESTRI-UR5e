@@ -1,0 +1,73 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.205.2/containers/docker-existing-dockerfile
+{
+	"name": "ROS devcontainer",
+	// Sets the run context to one level up instead of the .devcontainer folder.
+	"context": "..",
+	//---------
+	// Use the repository dockerfile
+	"dockerFile": "../Dockerfile",
+	// If you need special things, add a dev.dockerfile in this directory
+	// "dockerFile": "dev.dockerfile",
+	// If you want to use an image from a repo
+	// "image": "osrf/ros:melodic-desktop-full"
+	//---------
+	// Use the user so no permissions issues https://aka.ms/vscode-remote/containers/non-root.
+	// "remoteUser": "ros",
+	//---------
+	// To make guis work
+	//Nvidia via nvidia-docker2
+	// "runArgs": [
+	// 	"--volume=/tmp/.X11-unix:/tmp/.X11-unix:rw",
+	// 	"--volume=/tmp/.docker.xauth:/tmp/.docker.xauth",
+	// 	"--security-opt",
+	// 	"apparmor:unconfined",
+	// 	"--gpus",
+	// 	"all",
+	// ],
+	// "containerEnv": {
+	// 	"DISPLAY": "${localEnv:DISPLAY}",
+	// 	"QT_X11_NO_MITSHM": "1",
+	// 	"XAUTHORITY": "/tmp/.docker.xauth",
+	// 	"NVIDIA_VISIBLE_DEVICES": "all",
+	// 	"NVIDIA_DRIVER_CAPABILITIES": "all",
+	// 	// if your rosmaster is somewhere else
+	// 	// "ROS_MASTER_URI": "http://rosmaster:11311"
+	// },
+	// Intel
+	"postCreateCommand": "sudo apt-get update && sudo apt-get install -y mesa-utils libgl1-mesa-dri libgl1-mesa-glx",
+	"runArgs": [
+		"--volume=/tmp/.X11-unix:/tmp/.X11-unix:rw",
+		"--device=/dev/dri:/dev/dri",
+		// "--volume=/tmp/.docker.xauth:/tmp/.docker.xauth",
+		// "--security-opt",
+		// "apparmor:unconfined",
+	],
+	"containerEnv": {
+		"DISPLAY": "${localEnv:DISPLAY}",
+		"QT_X11_NO_MITSHM": "1",
+		// if your rosmaster is somewhere else
+		// "ROS_MASTER_URI": "http://rosmaster:11311"
+	},
+	//---------
+	// Set *default* container specific settings.json values on container create.
+	"settings": {
+		"terminal.integrated.profiles.linux": {
+			"bash": {
+				"path": "bash"
+			},
+		},
+		"terminal.integrated.defaultProfile.linux": "bash"
+	},
+	"extensions": [
+		"ms-iot.vscode-ros",
+		"ms-python.python",
+		"ms-vscode.cpptools",
+		"redhat.vscode-yaml",
+	],
+	// mount the folders you want in the container
+	"mounts": [
+		"source=${localWorkspaceFolder}/.vscode,target=${containerWorkspaceFolder}/.vscode,type=bind",
+		"source=${localWorkspaceFolder}/homestri_robot,target=${containerWorkspaceFolder}/homestri_robot,type=bind",
+	],
+}

@@ -28,9 +28,7 @@ RUN apt-get update -qq && apt-get install -y \
  ros-$ROS_DISTRO-moveit
 
 # Get UR5 stuff
-RUN git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git ./src/Universal_Robots_ROS_Driver \
- && mv src/Universal_Robots_ROS_Driver/ur_controllers src/ur_controllers \
- && rm -rf src/Universal_Robots_ROS_Driver
+RUN git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git ./src/Universal_Robots_ROS_Driver
 # clone fork of the description. This is currently necessary, until the changes are merged upstream. (allegedly required? we're at bleeding edge so this doesn't work)
 # RUN git clone -b calibration_devel https://github.com/fmauch/universal_robot.git ./src/fmauch_universal_robot
 # UR5e is wayyy behind on melodic integration, so I'll build from source via https://github.com/ros-industrial/universal_robot/tree/melodic-devel TODO: change this to apt when released!
@@ -49,7 +47,7 @@ ENV MESH_WORKSPACE_PATH='/catkin_ws/src'
 ENV GAZEBO_MODEL_PATH='/catkin_ws/src'
 
 
-# Get our own robot config TODO: change this to a git clone for the same package? makes development easier
+# Get our own robot config
 COPY homestri_robot ./src/
 
 ##########################################
@@ -75,4 +73,3 @@ RUN echo "source /catkin_ws/docker-entrypoint.sh" >> /root/.bashrc
 
 CMD ["/bin/bash"]
 # ENTRYPOINT ["/bin/bash", "-c", "source /catkin_ws/docker-entrypoint.sh && roslaunch moveit_config demo.launch"]
-# run this from the git repo: $ ./gui-docker -it -v $PWD/experimentdevel:/catkin_ws/src/experimentdevel jdekarske/homestri-ur5e:latest
