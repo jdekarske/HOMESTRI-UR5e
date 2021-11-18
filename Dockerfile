@@ -55,7 +55,6 @@ RUN source /opt/ros/$ROS_DISTRO/setup.bash \
  && catkin_make
 
 COPY docker-entrypoint.sh .
-RUN echo "source /catkin_ws/docker-entrypoint.sh" >> /root/.bashrc
 
 #########################################
 # Now let's add some development stuff
@@ -75,9 +74,10 @@ RUN useradd -m $USERNAME && \
 USER $USERNAME
 RUN mkdir -p /home/$USERNAME/catkin_ws/src
 WORKDIR /home/$USERNAME/catkin_ws/src
+RUN echo "source /catkin_ws/docker-entrypoint.sh" >> /home/$USERNAME/.bashrc
 
 # Get our own robot config
-COPY homestri_robot .
+COPY . ./HOMESTRI-UR5e
 
 CMD ["/bin/bash"]
 # ENTRYPOINT ["/bin/bash", "-c", "source /catkin_ws/docker-entrypoint.sh && roslaunch moveit_config demo.launch"]

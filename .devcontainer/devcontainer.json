@@ -69,6 +69,6 @@
 	// mount the folders you want in the container
 	"mounts": [
 		"source=${localWorkspaceFolder}/.vscode,target=${containerWorkspaceFolder}/.vscode,type=bind",
-		"source=${localWorkspaceFolder}/homestri_robot,target=${containerWorkspaceFolder}/homestri_robot,type=bind",
+		"source=${localWorkspaceFolder},target=${containerWorkspaceFolder}/HOMESTRI-UR5e,type=bind",
 	],
 }
