@@ -61,11 +61,6 @@ RUN source /opt/ros/$ROS_DISTRO/setup.bash \
  && rosdep install --from-path src --ignore-src -y \
  && catkin_make
 
-RUN \
-  apt-get update -qq && \
-  apt-get -y install libgl1-mesa-glx libgl1-mesa-dri && \
-  rm -rf /var/lib/apt/lists/*
-
 COPY docker-entrypoint.sh .
 RUN echo "source /catkin_ws/docker-entrypoint.sh" >> /root/.bashrc
  #fixes gazebo REST issue(gazebo needs to run one time before this is applied)
