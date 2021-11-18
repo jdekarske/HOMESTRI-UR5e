@@ -63,8 +63,6 @@ RUN source /opt/ros/$ROS_DISTRO/setup.bash \
 
 COPY docker-entrypoint.sh .
 RUN echo "source /catkin_ws/docker-entrypoint.sh" >> /root/.bashrc
- #fixes gazebo REST issue(gazebo needs to run one time before this is applied)
- #&& echo "sed -i 's/fuel/robotics/g' ~/.ignition/fuel/config.yaml" >> /root/.bashrc
 
 CMD ["/bin/bash"]
 # ENTRYPOINT ["/bin/bash", "-c", "source /catkin_ws/docker-entrypoint.sh && roslaunch moveit_config demo.launch"]
