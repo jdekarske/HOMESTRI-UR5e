@@ -31,7 +31,7 @@
 	"containerEnv": {
 		"DISPLAY": "${localEnv:DISPLAY}",
 		"QT_X11_NO_MITSHM": "1",
-		"XAUTHORITY": "/tmp/.docker.xauth",
+		// "XAUTHORITY": "/tmp/.docker.xauth",
 		"NVIDIA_VISIBLE_DEVICES": "all",
 		"NVIDIA_DRIVER_CAPABILITIES": "all",
 		// if your rosmaster is somewhere else
