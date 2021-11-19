@@ -7,12 +7,7 @@ The UR5-e robot arm configuration for the [HOME STRI](https://homestri.ucdavis.e
 
 * See the implementation of the robot for a [remote experiment](https://github.com/jdekarske/HOMESTRI-remote-experiment)
 
+* New! I added a devcontainer.json file for use with vscode's remote containers extension. To use, download the recommended extension, click the green `><` button in the corner and choose `Reopen in container`. See notes in `devcontainer.json` for handling your specific graphics hardware situation.
+
 ## Quickstart
 Run `docker-compose up -d` and navigate to [https://localhost:8080/vnc.html](https://localhost:8080/vnc.html) to see the robot in rviz and move it around.
-
-### A tad more complicated
-Run gui-docker as you would for any ordinary `docker run` command. If this is your first time running this, it may take a few minutes to download the current image. This will open gui instances from the container on your host. Sometimes the windows render weird, simply resize the window and it will recover.
-```
-./gui-docker --rm -it -v $PWD/experimentdevel:/catkin_ws/src/experimentdevel jdekarske/homestri-ur5e:latest
-```
-> "latest" is not a very stable image tag at the moment, but usable.
