@@ -8,7 +8,7 @@
   work cell objects to the ur.xacro file. Create a new top-level xacro and
   include the ur_macro.xacro file into it. Then write a new .launch file
   to load it onto the parameter server. -->
-  <xacro:include filename="$(find ur_description)/urdf/ur_macro.xacro"/>
+  <xacro:include filename="$(find ur_description)/urdf/inc/ur_macro.xacro"/>
 
   <!-- parameters -->
   <xacro:arg name="joint_limit_params" default="$(find ur_description)/config/ur5e/joint_limits.yaml"/>
