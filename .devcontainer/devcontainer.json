@@ -23,7 +23,6 @@
 	// Nvidia via nvidia-docker2
 	"runArgs": [
 		"--volume=/tmp/.X11-unix:/tmp/.X11-unix:rw",
-		"--volume=/tmp/.docker.xauth:/tmp/.docker.xauth",
 		"--security-opt",
 		"apparmor:unconfined",
 		"--gpus",
@@ -39,6 +38,7 @@
 		// "ROS_MASTER_URI": "http://rosmaster:11311"
 	},
 	// Intel
+	// Before running, use command `xhost +`. See link above for the dangers of this command.
 	// "postCreateCommand": "sudo apt-get update && sudo apt-get install -y mesa-utils libgl1-mesa-dri libgl1-mesa-glx",
 	// "runArgs": [
 	// 	"--volume=/tmp/.X11-unix:/tmp/.X11-unix:rw",
@@ -65,6 +65,7 @@
 		"ms-python.python",
 		"ms-vscode.cpptools",
 		"redhat.vscode-yaml",
+		"redhat.vscode-xml"
 	],
 	// mount the folders you want in the container
 	"mounts": [
