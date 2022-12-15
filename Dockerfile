@@ -28,10 +28,9 @@ RUN apt-get update -qq && apt-get install -y \
 
 # Get UR5 stuff
 RUN git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git ./src/Universal_Robots_ROS_Driver
-# clone fork of the description. This is currently necessary, until the changes are merged upstream. (allegedly required? we're at bleeding edge so this doesn't work)
+# TODO I think this is included upstream now
 # RUN git clone -b calibration_devel https://github.com/fmauch/universal_robot.git ./src/fmauch_universal_robot
-# UR5e is wayyy behind on melodic integration, so I'll build from source via https://github.com/ros-industrial/universal_robot/tree/melodic-devel TODO: change this to apt when released!
-RUN git clone -b melodic-devel-staging https://github.com/ros-industrial/universal_robot.git --single-branch ./src/universal_robot
+RUN git clone -b melodic-devel https://github.com/ros-industrial/universal_robot.git --single-branch ./src/universal_robot
 
 # Get robotiq stuff. Unfortunately, the official one is broken :(
 RUN git clone https://github.com/Polarworks/robotiq_85_gripper.git --single-branch ./src/robotiq
@@ -45,21 +44,25 @@ RUN git clone https://github.com/andreasBihlmaier/gazebo2rviz.git ./src/gazebo2r
 ENV MESH_WORKSPACE_PATH='/catkin_ws/src'
 ENV GAZEBO_MODEL_PATH='/catkin_ws/src'
 
+# Get our own robot config
+COPY src/ src/HOMESTRI-UR5e
+
 # Get everything going
 RUN source /opt/ros/$ROS_DISTRO/setup.bash \
  && apt-get update -qq \
-# TODO This isn't necessarily good practice, but we can fix later 
  && apt-get upgrade -y \
  && rosdep update \
  && rosdep install --from-path src --ignore-src -y \
- && catkin_make
+ && catkin build
 
 COPY docker-entrypoint.sh .
+RUN echo "source /catkin_ws/docker-entrypoint.sh" >> /root/.bashrc
 
 #########################################
 # Now let's add some development stuff
 
 # need to add a non-root user so bind mount permissions work correctly
+# and dev containers work if used
 ENV USERNAME ros
 RUN useradd -m $USERNAME && \
   echo "$USERNAME:$USERNAME" | chpasswd && \
@@ -75,9 +78,7 @@ USER $USERNAME
 RUN mkdir -p /home/$USERNAME/catkin_ws/src
 WORKDIR /home/$USERNAME/catkin_ws/src
 RUN echo "source /catkin_ws/docker-entrypoint.sh" >> /home/$USERNAME/.bashrc
-
-# Get our own robot config
-COPY . ./HOMESTRI-UR5e
+USER root
 
 CMD ["/bin/bash"]
-# ENTRYPOINT ["/bin/bash", "-c", "source /catkin_ws/docker-entrypoint.sh && roslaunch moveit_config demo.launch"]
+
